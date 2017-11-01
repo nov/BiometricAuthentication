@@ -73,16 +73,19 @@ public extension BioMetricAuthenticator {
 
     /// checks if face id is avaiable on device
     public func faceIDAvailable() -> Bool {
-//        if #available(iOS 11.0, *) {
-//            print("iOS 11.0 available")
-//            print(LAContext().biometryType)
-//            print(LAContext().biometryType == .typeFaceID)
+        if #available(iOS 11.0, *) {
+            print("iOS 11.0 available")
+            switch LAContext().biometryType {
+                case .none: print("None")
+                case .typeFaceID: print("FaceID")
+                case .typeTouchID: print("TouchID")
+            }
 //            return (LAContext().biometryType == .typeFaceID)
-//        } else {
-//            print("iOS 11.0 unavailable")
-//        }
-//        return false
-        return true
+            return true
+        } else {
+            print("iOS 11.0 unavailable")
+        }
+        return false
     }
 }
 
